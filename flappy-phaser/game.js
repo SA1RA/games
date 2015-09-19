@@ -24,12 +24,11 @@ function create() {
   ship = game.add.sprite(10,284,"ship");
   game.physics.enable(ship, Phaser.Physics.ARCADE);
   ship.body.gravity.y = 100;
+  ship.body.collideWorldBounds = true;
   bullets.body.velocity.x = -900;
 }
 
 function update() {
-  game.physics.arcade.overlap(ship, bullets, collisionHandler, null, this);
-
   if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
   ship.body.velocity.y = -100;
   jumpTimer = game.time.now + 750;
@@ -37,19 +36,4 @@ function update() {
 }
 
 function render() {
-  function collisionHandler(ship, bullets) {
-    shipReset();
-    repositionBullets();
 }
-
-  function repositionBullets() {
-     ship.x = game.rnd.integerInRange(320, 1);                                                                                         
-     ship.y = game.rnd.integerInRange(248, 1);                                                                                          
-}                                  
-
-  function repositionBullets() {
-    bullets.x = game.rnd.integerInRange(320,1);
-    bullets.y = game.rnd.integerInRange(1, 1);  
-}
-}
-
