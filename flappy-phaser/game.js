@@ -10,7 +10,7 @@ var jumpTimer = 0
 
 function preload() {
   game.stage.backgroundColor = '#bbbbbb';
-  game.load.image("background","background.png");
+  game.load.spritesheet("background","background.png",320,568);
   game.load.image("ship","ship.png");
   game.load.image("bullets","bullets.png");
 }
@@ -18,7 +18,7 @@ function preload() {
 function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   background = game.add.tileSprite(0,0,320,568,"background");
-  background.autoScroll(-100,0);
+  //background.autoScroll(-100,0);
   bullets = game.add.sprite(320, 248,"bullets");
   game.physics.enable(bullets, Phaser.Physics.ARCADE);
   ship = game.add.sprite(10,284,"ship");
@@ -26,6 +26,10 @@ function create() {
   ship.body.gravity.y = 100;
   ship.body.collideWorldBounds = true;
   bullets.body.velocity.x = -900;
+  ship.scale.set(2);
+  ship.smoothed = false;
+  background.animations.add('bganim',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,6,17,18,19,20,21,22,23,24,25], 10, true);
+  background.play('bganim');
 }
 
 function update() {
