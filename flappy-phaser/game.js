@@ -25,14 +25,21 @@ function create() {
   game.physics.enable(ship, Phaser.Physics.ARCADE);
   ship.body.gravity.y = 100;
   ship.body.collideWorldBounds = true;
-  bullets.body.velocity.x = -900;
+  bullets.body.velocity.x = -1000;
   ship.scale.set(2);
   ship.smoothed = false;
-  background.animations.add('bganim',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,6,17,18,19,20,21,22,23,24,25], 10, true);
+  background.animations.add('bganim', 10, true);
   background.play('bganim');
 }
 
 function update() {
+  if (bullets.x < -50) {
+      var bullety = game.rnd.integerInrange(25,500);
+      console.log(bullety)
+      bullets.x = 400;
+      bullets.y + 15;
+  }
+
   if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
   ship.body.velocity.y = -100;
   jumpTimer = game.time.now + 750;
